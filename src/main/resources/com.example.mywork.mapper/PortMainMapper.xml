@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.mywork.mapper.PortMainMapper">
+
+	<!--
+	<insert id="setBoard" parameterType="hashmap">
+		insert into tb_board values (0, #{title}, #{cmt}, #{user_id}, #{user_name}, now());
+	</insert>
+	
+	<update id="modBoard" parameterType="hashmap">
+		update tb_board set title=#{title}, cmt=#{cmt} where seq = #{seq};
+	</update>
+	
+	<select id="getBoardItem" resultType="com.example.myhome.vo.board" parameterType="hashmap">
+		select * from tb_board where seq = #{seq}
+	</select>
+	
+	<select id="getBoardList" resultType="com.example.myhome.vo.board" parameterType="hashmap">
+		select * from tb_board limit #{page_num}, #{item_count}
+	</select> 
+ 	-->
+    
+    <insert id="setPortfolio" parameterType="com.example.mywork.model.portfolio">
+    		insert into tb_portfolio values (0, #{port_type}, #{title}, #{content}, #{my_part}, #{img}, #{work_date}, now());
+    </insert>
+    
+    <select id="getPortList" resultType="com.example.mywork.model.portfolio">
+        select * from tb_portfolio order by seq desc;
+    </select>
+    
+    <select id="getPortDetail" resultType="com.example.mywork.model.portfolio" parameterType = "String">
+        select * from tb_portfolio where  seq = #{seq};
+    </select>
+    
+    <update id="modPortfolio" parameterType="com.example.mywork.model.portfolio">
+    		update tb_portfolio 
+    		set port_type = #{port_type}, title = #{title}, content = #{content}, my_part = #{my_part}, img = #{img}, work_date = #{work_date}, reg_date = now() where seq = #{seq};
+    </update>
+    
+    <delete id="deletePort" parameterType="String">
+    		delete from tb_portfolio where seq = #{seq}
+    </delete>
+</mapper>

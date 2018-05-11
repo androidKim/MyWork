@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<script type="text/javascript">
+	function tempFunction() 
+	{
+	
+	}
+	
+</script>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<!-- bootstrap.. -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+	<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+	<title>MyWork</title>
+</head>
+
+<body>
+
+	<form action="modPortProc" method="post">
+		<div style="width: 100%">
+			<input th:type="hidden" th:value="${pInfo.seq}" th:name = "seq"/>
+			
+			<select th:name="select" style="width: 10%">
+			  <option th:name="android">Android</option>
+			  <option th:name="ios" >iOS</option>
+			  <option th:name="web" >Web</option>		  
+			</select>
+			<input th:type="text" th:value="${pInfo.title}" th:name="title" style="width: 80%;" />
+		</div>
+		<div style="width: 100%">
+			<textarea th:text="${pInfo.content}" th:name="content" style="width: 90%; height: 200px;"></textarea> 
+		</div>
+		<div style="width: 100%">
+			<textarea th:text="${pInfo.my_part}"  th:name="my_part"  style="width: 90%; height: 200px;"></textarea> 
+		</div>
+		<input th:type="text" th:value="${pInfo.work_date}" th:name="work_date"/>
+		<input th:type="submit" th:value="submic"/>
+	</form>	
+	
+</body>
+</html>
