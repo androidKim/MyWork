@@ -1,7 +1,5 @@
 package com.example.mywork.controller;
 
-import java.util.ArrayList;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
@@ -10,10 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
 import com.example.mywork.mapper.MainMapper;
-import com.example.mywork.mapper.PortMainMapper;
-import com.example.mywork.model.portfolio;
 import com.example.mywork.util.Util;
 
 @Controller
