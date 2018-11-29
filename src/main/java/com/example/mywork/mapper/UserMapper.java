@@ -1,8 +1,7 @@
 package com.example.mywork.mapper;
 
-import org.apache.ibatis.annotations.Mapper;
 import com.example.mywork.model.user;
-
+import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface UserMapper 
 {
