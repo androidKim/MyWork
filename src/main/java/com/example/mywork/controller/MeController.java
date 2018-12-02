@@ -33,8 +33,11 @@ public class MeController
     @RequestMapping(value = "/meMain")
     public ModelAndView meMain(Model model, HttpServletRequest request, HttpServletResponse response) 
     {	    	
-        	ModelAndView mav = new ModelAndView();
+        ModelAndView mav = new ModelAndView();
+        user pInfo = new user("", "");
+        pInfo.role = user.role_login_false;
 		mav.setViewName("me_main");
+		mav.addObject("user", pInfo);
 		return mav;
     } 
     
@@ -43,26 +46,25 @@ public class MeController
     @RequestMapping(value = "/loginProc")
     public ModelAndView loginProc(HttpServletRequest request, HttpServletResponse response)
     {
-    		ModelAndView mav = new ModelAndView();
-    		String id = request.getParameter("uname");
+		ModelAndView mav = new ModelAndView();
+		String id = request.getParameter("uname");
 		String pw = request.getParameter("psw");
-		boolean isLogin = false;
 		
 		user pInfo = new user(id, pw);
 		user pResponse = mapper.loginProc(pInfo);
 		
 		if(pInfo.pw.equals(pResponse.pw))
 		{
-			isLogin = true;
-			//set Session..
-			request.getSession().setAttribute("isLogin", isLogin);
-			request.getSession().setMaxInactiveInterval(120);
-			//set Session Time..
+			pInfo.role = user.role_login_true;
 		}
 		else
 		{
-			
+			pInfo.role = user.role_login_false;
 		}
+		//set Session..
+		request.getSession().setAttribute("user", pInfo);//세션 저장
+		request.getSession().setMaxInactiveInterval(60 * 60 * 24);
+		mav.addObject("user", pInfo);
 		mav.setViewName("me_main");
 		return mav;
     }

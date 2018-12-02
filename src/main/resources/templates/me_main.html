@@ -141,16 +141,18 @@
 </head>
 
 <body id="page-top">
-
 	<!-- Navigation -->
     <nav class="navbar navbar-expand-lg bg-secondary fixed-top text-uppercase" id="mainNav">
       <div class="container">
       	<img src="img/my_image.png" alt="Avatar" style="width: 80px; height: 100px; margin-right: 10px; border-radius:50%">
         <a class="navbar-brand js-scroll-trigger" href="#">Kim Taejun</a>
-        
         <div>
-        <button class="navbar-toggler navbar-toggler-right text-uppercase bg-primary text-white rounded"  type="button" onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Login</button>
         
+       	<div th:switch="${user.role}">
+			<button th:case="0" class="navbar-toggler navbar-toggler-right text-uppercase bg-primary text-white rounded"  type="button" onclick="document.getElementById('loginForm').style.display='block'" style="width:auto;">Login</button>      
+			<p th:case="1">Hello <span th:text="${user.id}"></span></p> 
+		</div>
+
         <button class="navbar-toggler navbar-toggler-right text-uppercase bg-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           Menu
           <i class="fa fa-bars"></i>
@@ -176,20 +178,22 @@
       </div>
     </nav>
     
-	<div id="id01" class="modal">
+	<div id="loginForm" class="modal">
 		<form class="modal-content animate" action="/loginProc">
 			<div class="imgcontainer">
-			    <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal"></span>
+			    <span onclick="document.getElementById('loginForm').style.display='none'" class="close" title="Close Modal"></span>
 			</div>
 		
 		 	<div class="container">
-			   <label for="uname"><b>Username</b></label>
-			   <input type="text" placeholder="Enter Username" name="uname" required>
+			   	<label for="uname"><b>Username</b></label>
+			   	<input type="text" placeholder="Enter Username" name="uname" required>
 			
-			   <label for="psw"><b>Password</b></label>
-			   <input type="password" placeholder="Enter Password" name="psw" required>
-			     
-			   <button class="navbar-toggler navbar-toggler-right text-uppercase bg-primary text-white rounded" type="submit">Login</button>
+			   	<label for="psw"><b>Password</b></label>
+			   	<input type="password" placeholder="Enter Password" name="psw" required>
+			   
+			   	<p th:text="${session.isLogin}" th:unless="${session == null}"></p>
+				<button class="navbar-toggler navbar-toggler-right text-uppercase bg-primary text-white rounded" type="submit">Login</button>
+				<button class="navbar-toggler navbar-toggler-right text-uppercase bg-primary text-white rounded" onclick="document.getElementById('loginForm').style.display='none'">Cancel</button>
 		   </div>
 		</form>
 	</div>
@@ -199,9 +203,7 @@
       <div class="container">
         <img class="img-fluid mb-5 d-block mx-auto" src="img/android_circle.png" alt="" style="width: 200px; height: 200px;">
         <h1 class="text-uppercase mb-0">Developer</h1>
- 		<input value="'${sessionScope.isLogin}'"></p>
- 
-	
+ 		<p th:text="${session.isLogin}" th:unless="${session == null}"></p>
         <hr class="star-light">
         <h2 class="font-weight-light mb-0">Android - iOS - Web</h2>
       </div>

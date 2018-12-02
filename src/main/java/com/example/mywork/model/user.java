@@ -3,11 +3,15 @@ package com.example.mywork.model;
 public class user 
 {
 	/************************* Define *************************/
+	public static int role_login_false = 0;
+	public static int role_login_true = 1;
 	
 	/************************* Member *************************/
 	public int seq;
 	public String id;
 	public String pw;
+	public int role;
+	
 	/************************* 생성자 *************************/
 	//-----------------------------------------------------------------------------
 	//
@@ -40,6 +44,12 @@ public class user
 	}
 	public void setPw(String pw) {
 		this.pw = pw;
+	}
+	public int getRole() {
+		return role;
+	}
+	public void setRole(int role) {
+		this.role = role;
 	}
 	
 }
