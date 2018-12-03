@@ -3,24 +3,6 @@
 
 <mapper namespace="com.example.mywork.mapper.PortMainMapper">
 
-	<!--
-	<insert id="setBoard" parameterType="hashmap">
-		insert into tb_board values (0, #{title}, #{cmt}, #{user_id}, #{user_name}, now());
-	</insert>
-	
-	<update id="modBoard" parameterType="hashmap">
-		update tb_board set title=#{title}, cmt=#{cmt} where seq = #{seq};
-	</update>
-	
-	<select id="getBoardItem" resultType="com.example.myhome.vo.board" parameterType="hashmap">
-		select * from tb_board where seq = #{seq}
-	</select>
-	
-	<select id="getBoardList" resultType="com.example.myhome.vo.board" parameterType="hashmap">
-		select * from tb_board limit #{page_num}, #{item_count}
-	</select> 
- 	-->
-    
     <insert id="setPortfolio" parameterType="com.example.mywork.model.portfolio">
     		insert into tb_portfolio values (0, #{port_type}, #{title}, #{content}, #{my_part}, #{img}, #{work_date}, now());
     </insert>
