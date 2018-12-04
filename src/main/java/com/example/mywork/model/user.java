@@ -3,8 +3,8 @@ package com.example.mywork.model;
 public class user 
 {
 	/************************* Define *************************/
-	public static int role_login_false = 0;
-	public static int role_login_true = 1;
+	public static int user = 0;
+	public static int admin = 1;
 	
 	/************************* Member *************************/
 	public int seq;

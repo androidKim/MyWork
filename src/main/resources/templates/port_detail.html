@@ -80,12 +80,12 @@
 	<div class="lead mb-0" th:utext="|${pInfo.work_date}|" style="margin-left: 20px; margin-right: 20px;"></div>
 	<hr>
 	
-	<!-- 
-	<div>
-		<a th:href="@{/modPortPage(seq=${pInfo.seq})}" th:text="update"></a>
-		<a th:href="@{deletePortProc(seq=${pInfo.seq})}" th:text="delete"></a>
+	<div th:switch="${role}">
+		<div th:case="1" >
+			<a th:href="@{/modPortPage(seq=${pInfo.seq})}" th:text="update"></a>
+			<a th:href="@{deletePortProc(seq=${pInfo.seq})}" th:text="delete"></a>
+		</div> 
 	</div>
-	 -->
 	
 	<!-- Bootstrap core JavaScript -->
     <script src="vendor/jquery/jquery.min.js"></script>

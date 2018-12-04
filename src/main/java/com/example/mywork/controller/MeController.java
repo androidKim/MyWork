@@ -35,7 +35,7 @@ public class MeController
     {	    	
         ModelAndView mav = new ModelAndView();
         user pInfo = new user("", "");
-        pInfo.role = user.role_login_false;
+        pInfo.role = user.user;
 		mav.setViewName("me_main");
 		mav.addObject("user", pInfo);
 		return mav;
@@ -55,14 +55,14 @@ public class MeController
 		
 		if(pInfo.pw.equals(pResponse.pw))
 		{
-			pInfo.role = user.role_login_true;
+			pInfo.role = user.admin;
 		}
 		else
 		{
-			pInfo.role = user.role_login_false;
+			pInfo.role = user.user;
 		}
 		//set Session..
-		request.getSession().setAttribute("user", pInfo);//세션 저장
+		request.getSession().setAttribute("role", pInfo.role);//세션 저장
 		request.getSession().setMaxInactiveInterval(60 * 60 * 24);
 		mav.addObject("user", pInfo);
 		mav.setViewName("me_main");

@@ -87,20 +87,23 @@ public class PortController
     @RequestMapping(value = "/portDetail")
     public ModelAndView portDetail(Model model, HttpServletRequest request, HttpServletResponse response) 
     {	
-    		String seq = request.getParameter("seq");
-    	
-    		portfolio pInfo = new portfolio(); 
-    		pInfo = mapper.getPortDetail(seq);
-    		
-    		//
-    		if(pInfo.content != null)
-    			pInfo.content = pInfo.content.replaceAll("\r\n","<br>");
-    		
-    		if(pInfo.my_part != null)
-    			pInfo.my_part = pInfo.my_part.replaceAll("\r\n","<br>");
-    		
-    		ModelAndView mav = new ModelAndView();
-    		mav.addObject("pInfo", pInfo);
+		String seq = request.getParameter("seq");
+	
+		portfolio pInfo = new portfolio(); 
+		pInfo = mapper.getPortDetail(seq);
+		
+		//
+		if(pInfo.content != null)
+			pInfo.content = pInfo.content.replaceAll("\r\n","<br>");
+		
+		if(pInfo.my_part != null)
+			pInfo.my_part = pInfo.my_part.replaceAll("\r\n","<br>");
+		
+		//user role
+		int role = (Integer)request.getSession().getAttribute("role");
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("pInfo", pInfo);
+		mav.addObject("role", role);
 		mav.setViewName("port_detail");
 		return mav;
     } 
