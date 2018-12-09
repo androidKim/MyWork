@@ -14,6 +14,7 @@ import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,6 +28,7 @@ import com.example.mywork.common.Constant;
 import com.example.mywork.mapper.MainMapper;
 import com.example.mywork.mapper.PortMainMapper;
 import com.example.mywork.model.portfolio;
+import com.example.mywork.model.user;
 import com.example.mywork.util.Util;
 
 /*
@@ -49,11 +51,11 @@ public class PortController
     @RequestMapping(value = "/portMain")
     public ModelAndView portMain(Model model, HttpServletRequest request, HttpServletResponse response) 
     {	    	
-    		ArrayList<portfolio> pArray = new ArrayList<>();
+		ArrayList<portfolio> pArray = new ArrayList<>();
 		pArray = mapper.getPortList();
 
-    		ModelAndView mav = new ModelAndView();
-    		mav.addObject("pArray", pArray);
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("pArray", pArray);
 		mav.setViewName("port_main");
 		return mav;
     } 
@@ -99,8 +101,20 @@ public class PortController
 		if(pInfo.my_part != null)
 			pInfo.my_part = pInfo.my_part.replaceAll("\r\n","<br>");
 		
-		//user role
-		int role = (Integer)request.getSession().getAttribute("role");
+		
+		//session null check
+		HttpSession session = request.getSession(false);
+		int role = 0;
+		if(session == null)
+		{
+			role = user.user;
+		}
+		else
+		{
+			//user role
+			role = (Integer)session.getAttribute("role");
+		}
+		
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("pInfo", pInfo);
 		mav.addObject("role", role);
