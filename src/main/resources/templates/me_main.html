@@ -137,10 +137,6 @@
 	<!-- Navigation -->
     <nav class="navbar navbar-expand-lg bg-secondary fixed-top text-uppercase" id="mainNav">
       <div class="container">
-      <div th:switch="${user.role}" >
-				<button th:case="0" class="navbar-toggler navbar-toggler-right text-uppercase bg-primary text-white rounded" type="button" onclick="document.getElementById('loginForm').style.display='block'" style="width:auto;">Login</button>      
-				<p th:case="1" style="color: white;">Hello <span th:text="${user.id}"></span></p> 
-		</div>
       	<img src="img/my_image.png" alt="Avatar" style="width: 80px; height: 100px; margin-right: 10px; border-radius:50%">
         <a class="navbar-brand js-scroll-trigger" href="#">Kim Taejun</a>
         <div>
@@ -405,6 +401,11 @@
     <div class="copyright py-4 text-center text-white">
       <div class="container">
         <small>&copy;Developer kimtaejun</small>
+        
+        <div th:switch="${user.role}" style="margin: 8px">
+				<button th:case="0" class="navbar-toggler navbar-toggler-right text-uppercase bg-primary text-white rounded" type="button" onclick="document.getElementById('loginForm').style.display='block'" style="width:auto;">Login</button>      
+				<p th:case="1" class="navbar-brand js-scroll-trigger" style="color: white;"><span th:text="${user.id}"></span></p> 
+		</div>
       </div>
     </div>
 

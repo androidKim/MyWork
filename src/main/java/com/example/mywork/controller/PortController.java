@@ -53,8 +53,23 @@ public class PortController
     {	    	
 		ArrayList<portfolio> pArray = new ArrayList<>();
 		pArray = mapper.getPortList();
-
+		
+		
+		//session null check
+		HttpSession session = request.getSession(false);
+		int role = 0;
+		if(session == null)
+		{
+			role = user.user;
+		}
+		else
+		{
+			//user role
+			role = (Integer)session.getAttribute("role");
+		}
+		
 		ModelAndView mav = new ModelAndView();
+		mav.addObject("role", role);
 		mav.addObject("pArray", pArray);
 		mav.setViewName("port_main");
 		return mav;

@@ -110,11 +110,12 @@
 					</tr>
 				</tbody>
 			</table>
-			 <!-- 
-			<div>
-				<a th:text="add" th:href="@{/setPortPage}"></a>
+			  
+			 <div th:switch="${role}">
+				<div th:case="1" >
+					<a th:text="add" th:href="@{/setPortPage}"></a>
+				</div> 
 			</div>
-			 -->
 		</div>
 	</div>
 
